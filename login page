@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login / Sign Up / Forgot Password</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+background: #f4f4f4;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+margin: 0;
+}
+.box {
+background: white;
+padding: 30px;
+border-radius: 8px;
+box-shadow: 0 0 15px rgba(0,0,0,0.2);
+width: 320px;
+display: none;
+}
+.box h2 {
+text-align: center;
+margin-bottom: 20px;
+color: #333;
+}
+.box input, .box button {
+width: 100%;
+padding: 10px;
+margin: 8px 0;
+border-radius: 5px;
+}
+.box input {
+border: 1px solid #ccc;
+}
+.login button { background: #007bff; border: none; color: white; cursor: pointer; }
+.login button:hover { background: #0056b3; }
+.signup button { background: #28a745; border: none; color: white; cursor: pointer; }
+.signup button:hover { background: #1e7e34; }
+.forgot button { background: #ffc107; border: none; color: #333; cursor: pointer; }
+.forgot button:hover { background: #e0a800; }
+.links { text-align: center; margin-top: 10px; font-size: 14px; }
+.links a { color: #007bff; text-decoration: none; cursor: pointer; }
+.links a:hover { text-decoration: underline; }
+.message { text-align: center; margin-top: 10px; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<!-- Login Section -->
+<div class="box login" id="loginBox" style="display:block;">
+<h2>Login</h2>
+<input type="text" id="loginUser" placeholder="Username" required>
+<input type="password" id="loginPass" placeholder="Password" required>
+<button onclick="login()">Login</button>
+<div class="message" id="loginMsg"></div>
+<div class="links">
+<p><a onclick="showBox('forgot')">Forgot Password?</a></p>
+<p>Don't have an account? <a onclick="showBox('signup')">Sign Up</a></p>
+</div>
+</div>
+
+<!-- Sign Up Section -->
+<div class="box signup" id="signupBox">
+<h2>Sign Up</h2>
+<input type="text" id="newUser" placeholder="Username" required>
+<input type="email" id="newEmail" placeholder="Email" required>
+<input type="password" id="newPass" placeholder="Password" required>
+<button onclick="signup()">Sign Up</button>
+<div class="message" id="signupMsg"></div>
+<div class="links">
+<p>Already have an account? <a onclick="showBox('login')">Login</a></p>
+</div>
+</div>
+
+<!-- Forgot Password Section -->
+<div class="box forgot" id="forgotBox">
+<h2>Forgot Password</h2>
+<input type="email" id="resetEmail" placeholder="Enter your email" required>
+<button onclick="forgot()">Reset Password</button>
+<div class="message" id="forgotMsg"></div>
+<div class="links">
+<p><a onclick="showBox('login')">Back to Login</a></p>
+</div>
+</div>
+
+<script>
+// Function to switch between sections
+function showBox(box) {
+document.getElementById('loginBox').style.display = 'none';
+document.getElementById('signupBox').style.display = 'none';
+document.getElementById('forgotBox').style.display = 'none';
+
+if(box === 'login') document.getElementById('loginBox').style.display = 'block';
+if(box === 'signup') document.getElementById('signupBox').style.display = 'block';
+if(box === 'forgot') document.getElementById('forgotBox').style.display = 'block';
+}
+
+// Login functionality (demo)
+function login() {
+const user = document.getElementById('loginUser').value;
+const pass = document.getElementById('loginPass').value;
+const msg = document.getElementById('loginMsg');
+if(user === "admin" && pass === "1234"){
+msg.style.color="green";
+msg.textContent="Login successful!";
+} else {
+msg.style.color="red";
+msg.textContent="Invalid username or password";
+}
+}
+
+// Sign Up functionality (demo)
+function signup() {
+const msg = document.getElementById('signupMsg');
+msg.style.color="green";
+msg.textContent="Account created! (demo only)";
+}
+
+// Forgot Password functionality (demo)
+function forgot() {
+const msg = document.getElementById('forgotMsg');
+msg.style.color="green";
+msg.textContent=" Reset link sent! (demo only)";
+}
+</script>
+
+</body>
+</html>
